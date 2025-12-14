@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="dashboard-container">
+
+  
+    <div class="dashboard-nav">
+        <a href="/home" class="home-link">🏠 Home</a>
+    </div>
+
+   
+    <h2 class="dashboard-title">Admin Dashboard</h2>
+
+    
+    <div class="stats-grid">
+        <div class="card">
+            <h3>Total Products</h3>
+            <p>{{ total_products }}</p>
+            <a href="/products">Check products</a>
+        </div>
+
+        <div class="card">
+            <h3>Total Customers</h3>
+            <p>{{ total_customers }}</p>
+            <a href="/customers">Check Customers</a>
+        </div>
+
+        <div class="card">
+            <h3>Premium Customers</h3>
+            <p>{{ premium_customers }}</p>
+        </div>
+    </div>
+
+    
+    <div class="dashboard-actions">
+        <a href="/predict_demand" class="btn primary">📈 Smart Predictor</a>
+        <a href="/invoices" class="btn secondary">🧾 View Invoices</a>
+    </div>
+
+</div>
+
+{% endblock %}

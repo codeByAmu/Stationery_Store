@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Add Customer</h2>
+
+<div class="dashboard-nav">
+        <a href="/home" class="home-link">🏠 Home</a>
+    </div>
+<form method="post">
+    <lable>Name</lable>
+    <input type="text" name="name" required>
+    <lable>Email</lable>
+    <input type="email" name="email">
+    <lable>Phone</lable>
+    <input type="tel" name="phone" required>
+    <lable><input type="checkbox" name="premier"> Premier</lable>
+    <button type="submit" class="btn primary">Add</button>  
+</form>
+{% endblock %}

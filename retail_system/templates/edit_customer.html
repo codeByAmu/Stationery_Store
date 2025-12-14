@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Edit Customer</h2>
+<form method="post">
+    <label>Name</label>
+    <input name="name" value="{{customer.name}}" required>
+    <label>Email</label>
+    <input name="email" type="email" value="{{customer.email}}">
+    <label>Phone</label>
+    <input name="phone" type="number" value="{{customer.phone}}">
+    <label><input type="checkbox" name="premier" {% if customer.premier %} checked {% endif %}> Premier Customer</label>
+    <button type="submit" class="home-link">Save</button>
+</form>
+{% endblock %}

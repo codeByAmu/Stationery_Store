@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>show invoice</h2>
+<b><a href="/home">Home</a>| <a href="/admin">Back</a></b><br></br>
+<table border="1">
+    <thead><tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Total</th>
+        <th>Action</th>
+    </tr></thead>
+    <tbody>
+        {% for inv in invoices %}
+        <tr>
+            <td>{{inv.invoice_id}}</td>
+            
+            <td>{{inv.created_at}}</td>
+            <td>{{inv.total_amount}}</td>
+            <td><a href="/invoice/{{ inv.invoice_id}}">View</a></td>
+        </tr>
+        
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

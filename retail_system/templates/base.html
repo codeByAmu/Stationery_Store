@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Stationery Store</title>
+</head>
+<body style="background: url('{{ url_for('static', filename='pic.jpeg') }}') no-repeat center center fixed; background-size:cover">
+    <center>
+    <h1 ><b>🌈<span style="color:red;">R</span><span style="color:orange;">a</span><span style="color:yellow;">i</span><span style="color:green;">n</span><span style="color:blue;">b</span><span style="color:indigo;">o</span><span style="color:violet;">w</span> Stationery Store</b></h1>
+                       
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-messages">
+          {% for category, message in messages %}
+            <div class="alert {{ category }}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+    
+    </main>
+    </center>
+</body>
+</html>

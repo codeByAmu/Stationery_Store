@@ -1,0 +1,44 @@
+{% extends 'base.html'%}
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-messages">
+          {% for category, message in messages %}
+            <div class="alert {{ category }}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+<h2>Products</h2><br><br>
+
+<div class="dashboard-nav">
+        <a href="/home" class="home-link">🏠 Home</a> | <a href='/add_product' class="home-link">Add_Product</a>
+    </div>
+
+<table border="1">
+    <thead>
+        <tr><th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Action</th></tr>
+    </thead>
+    <tbody>
+        {% for p in products %}
+        <tr>
+            <td>{{p.product_id}}</td>
+            <td>{{p.name}}</td>
+            <td>{{p.price}}</td>
+            <td>{{p.stock}}</td>
+            <td>
+            <a href="/edit_product/{{p.product_id}}">Edit</a>
+            <a href="/delete_product/{{p.product_id}}">Delete</a>
+            </td>   
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

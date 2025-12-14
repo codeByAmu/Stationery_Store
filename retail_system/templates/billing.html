@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-messages">
+          {% for category, message in messages %}
+            <div class="alert {{ category }}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+<h2>Create Invoice</h2>
+ <div class="dashboard-nav"><a href="/home" class="home-link">🏠 Home</a> | <a href="/add_customers" class="home-link">Add Customer</a> 
+
+<form method="post">
+    <label>Customer</label>
+    <select name="customer_id" required>
+        {% for c in customers %}
+        <option value="{{ c.customer_id }}" {% if customer_id == c.customer_id|string %}selected{% endif %}>{{ c.name }}</option>
+        {% endfor %}
+    </select><br>
+    <center>
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Action</th>
+        </tr>
+        {% for i in range(row_count) %}
+        <tr>
+            <td>{{ i + 1 }}</td>
+            <td>
+                <select name="product_id[]" required>
+                    <option value="">Select</option>
+                    {% for p in products %}
+                    <option value="{{p.product_id}}" {% if product_ids and product_ids[i] == p.product_id|string %}selected{% endif %}>
+                        {{p.name}} - {{p.price}}
+                    </option>
+                    {% endfor %}
+                </select>
+            </td>
+            <td>
+                <input type="number" name="quantity[]" value="{% if quantities and quantities[i] %}{{ quantities[i] }}{% else %}1{% endif %}" min="1" required>
+            </td>
+            <td>
+                <button type="submit" name="delete_row" value="{{ i }}">Delete</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </table></center>
+
+    <input type="hidden" name="row_count" value="{{ row_count }}">
+    <br><br>
+    <button type="submit" name="add_row" value="1" class="btn primary">➕ Add More Items</button>
+    <button type="submit" name="submit_invoice" value="1" class="btn primary">Create Invoice</button>
+</form>
+{% endblock %}
